@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 def uppercase(c):
-    strc = ''
+    strc = ""
     for i in c:
         if ord(i) in range(65, 91):
             strc += str(i)
