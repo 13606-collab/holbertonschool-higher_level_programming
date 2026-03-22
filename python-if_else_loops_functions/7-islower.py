@@ -1,7 +1,7 @@
 #!/usr/bin/python3
-def islower(c):
+def islover(c):
     if ord(c) in range(91, 116):
-        print("{} is lower".format(c))
+        print(True)
     else:
-        print("{} is upper".format(c))
-islower(c="A")
+        print(False)
+islover(c="A")
