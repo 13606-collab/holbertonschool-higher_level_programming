@@ -3,9 +3,9 @@ def uppercase(c):
     strc = ''
     for i in str(c):
         if ord(i) in range (65, 91):
-            strc += i
+            strc += str(i)
         elif ord(i) in range (97, 123):
             strc += str(chr(ord(i)-32))
         else:
             strc += i
-    print(strc)
+    print("{}".format(strc))
