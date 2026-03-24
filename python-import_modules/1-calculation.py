@@ -1,8 +1,5 @@
 #!/usr/bin/python3
-from calculator import add
-from calculator import sub
-from calculator import mul
-from calculator import div
+from calculator_1 import *
 
 if __name__ == "__main__":
     a = 10
