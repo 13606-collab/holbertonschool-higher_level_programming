@@ -5,4 +5,4 @@ def safe_print_division(a, b):
     except ZeroDivisionError:
         result =  None
     finally:
-        print("section preceded by Inside result:{} / {} = {}".format(a, b, result))
+        print("{}".format(result))
