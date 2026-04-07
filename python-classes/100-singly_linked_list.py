@@ -1,82 +1,255 @@
 #!/usr/bin/python3
 """
-This module defines a Square class.
-It handles size and position validation, area calculation, 
-and formatted printing with specific coordinates.
+This module defines a Singly Linked List and its Nodes.
+It allows for sorted insertion of integers into a linked list structure
+to maintain an increasing order.
 """
 
 
-class Square:
+class Node:
     """
-    A class that represents a square.
+    Defines a node of a singly linked list.
 
     Attributes:
-        __size (int): The side length of the square.
-        __position (tuple): The (x, y) coordinates of the square.
+        __data (int): The integer value stored in the node.
+        __next_node (Node): The reference to the next node in the list.
     """
 
-    def __init__(self, size=0, position=(0, 0)):
+    def __init__(self, data, next_node=None):
         """
-        Initializes a new Square instance.
+        Initializes a new Node instance.
 
         Args:
-            size (int): The side length.
-            position (tuple): The horizontal and vertical offset.
+            data (int): The data value for the node.
+            next_node (Node): The next node in the list.
         """
-        self.size = size
-        self.position = position
+        self.data = data
+        self.next_node = next_node
 
     @property
-    def size(self):
-        """Retrieves the size."""
-        return self.__size
+    def data(self):
+        """
+        Retrieves the data of the node.
 
-    @size.setter
-    def size(self, value):
-        """Sets the size with validation."""
+        Returns:
+            int: The data stored in the node.
+        """
+        return self.__data
+
+    @data.setter
+    def data(self, value):
+        """
+        Sets the data with type validation.
+
+        Args:
+            value (int): The integer value to set.
+
+        Raises:
+            TypeError: If value is not an integer.
+        """
         if not isinstance(value, int):
-            raise TypeError("size must be an integer")
-        if value < 0:
-            raise ValueError("size must be >= 0")
-        self.__size = value
+            raise TypeError("data must be an integer")
+        self.__data = value
 
     @property
-    def position(self):
-        """Retrieves the position."""
-        return self.__position
+    def next_node(self):
+        """
+        Retrieves the next_node.
 
-    @position.setter
-    def position(self, value):
+        Returns:
+            Node: The next node in the sequence.
         """
-        Sets the position with validation.
-        
-        Value must be a tuple of 2 positive integers.
-        """
-        if (not isinstance(value, tuple) or len(value) != 2 or
-                not all(isinstance(i, int) for i in value) or
-                not all(i >= 0 for i in value)):
-            raise TypeError("position must be a tuple of 2 positive integers")
-        self.__position = value
+        return self.__next_node
 
-    def area(self):
-        """Returns the current square area."""
-        return self.__size ** 2
+    @next_node.setter
+    def next_node(self, value):
+        """
+        Sets the next_node with validation.
 
-    def my_print(self):
+        Args:
+            value (Node): The Node object or None.
+
+        Raises:
+            TypeError: If value is not a Node object or None.
         """
-        Prints the square with '#' using the position offset.
-        - position[1] handles vertical space (newlines).
-        - position[0] handles horizontal space (leading spaces).
+        if value is not None and not isinstance(value, Node):
+            raise TypeError("next_node must be a Node object")
+        self.__next_node = value
+
+
+class SinglyLinkedList:
+    """
+    Defines a singly linked list.
+
+    Attributes:
+        __head (Node): The first node of the list.
+    """
+
+    def __init__(self):
+        """Initializes an empty Singly Linked List."""
+        self.__head = None
+
+    def __str__(self):
         """
-        if self.__size == 0:
-            print("")
+        Defines the printable representation of the list.
+        Each node's data is printed on a new line.
+
+        Returns:
+            str: The formatted string of all node values.
+        """
+        result = []
+        current = self.__head
+        while current:
+            result.append(str(current.data))
+            current = current.next_node
+        return "\n".join(result)
+
+    def sorted_insert(self, value):
+        """
+        Inserts a new Node into the correct sorted position (increasing order).
+
+        Args:
+            value (int): The value to be inserted.
+        """
+        new_node = Node(value)
+
+        # Case 1: List is empty or new value is smaller than head
+        if self.__head is None or self.__head.data >= value:
+            new_node.next_node = self.__head
+            self.__head = new_node
             return
 
-        # Print vertical offset (y)
-        if self.__position[1] > 0:
-            for _ in range(self.__position[1]):
-                print("")
+        # Case 2: Find the correct position in the middle or end
+        current = self.__head
+        while current.next_node and current.next_node.data < value:
+            current = current.next_node
 
-        # Print the square rows
-        for _ in range(self.__size):
-            print(" " * self.__position[0] + "#" * self.__size)
+        new_node.next_node = current.next_node
+        current.next_node = new_node#!/usr/bin/python3
+"""
+This module defines a Singly Linked List and its Nodes.
+It allows for sorted insertion of integers into a linked list structure
+to maintain an increasing order.
+"""
+
+
+class Node:
+    """
+    Defines a node of a singly linked list.
+
+    Attributes:
+        __data (int): The integer value stored in the node.
+        __next_node (Node): The reference to the next node in the list.
+    """
+
+    def __init__(self, data, next_node=None):
+        """
+        Initializes a new Node instance.
+
+        Args:
+            data (int): The data value for the node.
+            next_node (Node): The next node in the list.
+        """
+        self.data = data
+        self.next_node = next_node
+
+    @property
+    def data(self):
+        """
+        Retrieves the data of the node.
+
+        Returns:
+            int: The data stored in the node.
+        """
+        return self.__data
+
+    @data.setter
+    def data(self, value):
+        """
+        Sets the data with type validation.
+
+        Args:
+            value (int): The integer value to set.
+
+        Raises:
+            TypeError: If value is not an integer.
+        """
+        if not isinstance(value, int):
+            raise TypeError("data must be an integer")
+        self.__data = value
+
+    @property
+    def next_node(self):
+        """
+        Retrieves the next_node.
+
+        Returns:
+            Node: The next node in the sequence.
+        """
+        return self.__next_node
+
+    @next_node.setter
+    def next_node(self, value):
+        """
+        Sets the next_node with validation.
+
+        Args:
+            value (Node): The Node object or None.
+
+        Raises:
+            TypeError: If value is not a Node object or None.
+        """
+        if value is not None and not isinstance(value, Node):
+            raise TypeError("next_node must be a Node object")
+        self.__next_node = value
+
+
+class SinglyLinkedList:
+    """
+    Defines a singly linked list.
+
+    Attributes:
+        __head (Node): The first node of the list.
+    """
+
+    def __init__(self):
+        """Initializes an empty Singly Linked List."""
+        self.__head = None
+
+    def __str__(self):
+        """
+        Defines the printable representation of the list.
+        Each node's data is printed on a new line.
+
+        Returns:
+            str: The formatted string of all node values.
+        """
+        result = []
+        current = self.__head
+        while current:
+            result.append(str(current.data))
+            current = current.next_node
+        return "\n".join(result)
+
+    def sorted_insert(self, value):
+        """
+        Inserts a new Node into the correct sorted position (increasing order).
+
+        Args:
+            value (int): The value to be inserted.
+        """
+        new_node = Node(value)
+
+        # Case 1: List is empty or new value is smaller than head
+        if self.__head is None or self.__head.data >= value:
+            new_node.next_node = self.__head
+            self.__head = new_node
+            return
+
+        # Case 2: Find the correct position in the middle or end
+        current = self.__head
+        while current.next_node and current.next_node.data < value:
+            current = current.next_node
+
+        new_node.next_node = current.next_node
+        current.next_node = new_node
