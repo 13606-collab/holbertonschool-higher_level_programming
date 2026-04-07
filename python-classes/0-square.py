@@ -1,7 +1,6 @@
 #!/usr/bin/python3
-"""Module that defines a square"""
+"""Module that defines an empty Square class"""
 
 class Square:
-    """Print split"""
-
-    print("")
+    """Represents an empty square"""
+    pass
