@@ -1,6 +1,7 @@
 class Square:
     """Defines a square by size with validation and area calculation."""
 
+
     def __init__(self, size=0):
         """
         Initializes the square.
@@ -8,11 +9,13 @@ class Square:
         Args:
             size (int): The side length of the square.
         """
+
         self.size = size
 
     @property
     def size(self):
         """Retrieves the size of the square."""
+
         return self.__size
 
     @size.setter
@@ -27,6 +30,7 @@ class Square:
             TypeError: If value is not an integer.
             ValueError: If value is less than 0.
         """
+
         if not isinstance(value, int):
             raise TypeError("size must be an integer")
         if value < 0:
@@ -40,4 +44,5 @@ class Square:
         Returns:
             The area (size squared).
         """
+
         return self.__size ** 2
