@@ -16,7 +16,6 @@ class Square(Rectangle):
         """
         Initializes a new Square instance.
         """
-        
         self.integer_validator("size", size)
         """
         Call the parent class (Rectangle) constructor.
