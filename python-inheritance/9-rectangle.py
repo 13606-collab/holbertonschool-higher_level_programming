@@ -22,7 +22,12 @@ class Rectangle(BaseGeometry):
 
     def area(self):
         """
-        This method calculates Area of Rectangle
+        Calculates and returns the area of the rectangle.
         """
-        print(self.__width*self.__hight)
+        return self.__width * self.__height
+
+    def __str__(self):
+        """
+        Returns the informal string representation of the rectangle.
+        """
         return "[Rectangle] {}/{}".format(self.__width, self.__height)
