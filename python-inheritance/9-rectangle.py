@@ -6,6 +6,7 @@ This is empty class
 
 BaseGeometry = __import__('7-base_geometry').BaseGeometry
 
+
 class Rectangle(BaseGeometry):
     """
     This class inheriting from BaseGeometry
