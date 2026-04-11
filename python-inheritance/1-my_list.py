@@ -12,7 +12,8 @@ class MyList(list):
     
     def print_sorted(self):
         """
-        This method sort inherited file
+        Prints the list elements in ascending order.
+        The original list remains unchanged.
         """
 
-        return sorted(self)
+        print(sorted(self))
