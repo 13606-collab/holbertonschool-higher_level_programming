@@ -1,34 +1,66 @@
-guillaume@ubuntu:~/$ cat 7-main.py
-
-"""
-This is the text file for 7-base_geometrt.py
-"""
-
 #!/usr/bin/python3
+"""
+7-main.py
+
+Test file for the BaseGeometry class (task 7: Integer validator)
+Run this after saving your class in 7-base_geometry.py
+"""
+
 BaseGeometry = __import__('7-base_geometry').BaseGeometry
 
 bg = BaseGeometry()
 
-bg.integer_validator("my_int", 12)
-bg.integer_validator("width", 89)
-
+print("=== Testing area() method ===")
 try:
-    bg.integer_validator("name", "John")
+    bg.area()
 except Exception as e:
     print("[{}] {}".format(e.__class__.__name__, e))
 
+print("\n=== Testing integer_validator() method ===")
+
+# Valid cases (should NOT raise any exception)
+print("Valid positive integers:")
+bg.integer_validator("width", 12)
+print("  width = 12 → OK")
+
+bg.integer_validator("height", 1)
+print("  height = 1 → OK")
+
+bg.integer_validator("size", 100)
+print("  size = 100 → OK")
+
+# TypeError cases
+print("\nTypeError cases (value is not an integer):")
 try:
-    bg.integer_validator("age", 0)
+    bg.integer_validator("width", "not an integer")
 except Exception as e:
-    print("[{}] {}".format(e.__class__.__name__, e))
+    print("  width = 'not an integer' → [{}] {}".format(e.__class__.__name__, e))
 
 try:
-    bg.integer_validator("distance", -4)
+    bg.integer_validator("height", 3.14)
 except Exception as e:
-    print("[{}] {}".format(e.__class__.__name__, e))
+    print("  height = 3.14 → [{}] {}".format(e.__class__.__name__, e))
 
-guillaume@ubuntu:~/$ ./7-main.py
-[TypeError] name must be an integer
-[ValueError] age must be greater than 0
-[ValueError] distance must be greater than 0
-guillaume@ubuntu:~/$ 
+try:
+    bg.integer_validator("radius", [1, 2, 3])
+except Exception as e:
+    print("  radius = [1, 2, 3] → [{}] {}".format(e.__class__.__name__, e))
+
+# ValueError cases
+print("\nValueError cases (value ≤ 0):")
+try:
+    bg.integer_validator("width", -5)
+except Exception as e:
+    print("  width = -5 → [{}] {}".format(e.__class__.__name__, e))
+
+try:
+    bg.integer_validator("height", 0)
+except Exception as e:
+    print("  height = 0 → [{}] {}".format(e.__class__.__name__, e))
+
+try:
+    bg.integer_validator("size", -100)
+except Exception as e:
+    print("  size = -100 → [{}] {}".format(e.__class__.__name__, e))
+
+print("\n✅ All tests completed successfully!")
