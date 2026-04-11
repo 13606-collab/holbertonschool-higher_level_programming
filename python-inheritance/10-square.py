@@ -15,14 +15,14 @@ class Square(Rectangle):
     def __init__(self, size):
         """
         Initializes a new Square instance.
-        """ 
-        
+        """
+
         self.integer_validator("size", size)
         """
         Call the parent class (Rectangle) constructor.
-        """        
+        """
         super().__init__(size, size)
         """
         Store the private attribute
-        """        
+        """
         self.__size = size
