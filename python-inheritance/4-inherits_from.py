@@ -4,7 +4,7 @@ This module represents if type(obj) is instance of subclass
 """
 
 
-def is_kind_of_class(obj, a_class):
+def inherits_from(obj, a_class):
     """
     This method return True or False
     """
