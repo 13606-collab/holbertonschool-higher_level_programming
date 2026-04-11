@@ -1,66 +1,33 @@
-#!/usr/bin/python3
-"""
-7-main.py
+>>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
+>>> bg = BaseGeometry()
 
-Test file for the BaseGeometry class (task 7: Integer validator)
-Run this after saving your class in 7-base_geometry.py
-"""
+# Test area() method
+>>> bg.area()
+Traceback (most recent call last):
+...
+Exception: area() is not implemented
 
-BaseGeometry = __import__('7-base_geometry').BaseGeometry
+# Test integer_validator - valid cases (no output)
+>>> bg.integer_validator("width", 12)
+>>> bg.integer_validator("height", 1)
+>>> bg.integer_validator("size", 100)
 
-bg = BaseGeometry()
+# Test integer_validator - TypeError cases
+>>> bg.integer_validator("width", "not an integer")
+Traceback (most recent call last):
+...
+TypeError: width must be an integer
+>>> bg.integer_validator("height", 3.14)
+Traceback (most recent call last):
+...
+TypeError: height must be an integer
 
-print("=== Testing area() method ===")
-try:
-    bg.area()
-except Exception as e:
-    print("[{}] {}".format(e.__class__.__name__, e))
-
-print("\n=== Testing integer_validator() method ===")
-
-# Valid cases (should NOT raise any exception)
-print("Valid positive integers:")
-bg.integer_validator("width", 12)
-print("  width = 12 → OK")
-
-bg.integer_validator("height", 1)
-print("  height = 1 → OK")
-
-bg.integer_validator("size", 100)
-print("  size = 100 → OK")
-
-# TypeError cases
-print("\nTypeError cases (value is not an integer):")
-try:
-    bg.integer_validator("width", "not an integer")
-except Exception as e:
-    print("  width = 'not an integer' → [{}] {}".format(e.__class__.__name__, e))
-
-try:
-    bg.integer_validator("height", 3.14)
-except Exception as e:
-    print("  height = 3.14 → [{}] {}".format(e.__class__.__name__, e))
-
-try:
-    bg.integer_validator("radius", [1, 2, 3])
-except Exception as e:
-    print("  radius = [1, 2, 3] → [{}] {}".format(e.__class__.__name__, e))
-
-# ValueError cases
-print("\nValueError cases (value ≤ 0):")
-try:
-    bg.integer_validator("width", -5)
-except Exception as e:
-    print("  width = -5 → [{}] {}".format(e.__class__.__name__, e))
-
-try:
-    bg.integer_validator("height", 0)
-except Exception as e:
-    print("  height = 0 → [{}] {}".format(e.__class__.__name__, e))
-
-try:
-    bg.integer_validator("size", -100)
-except Exception as e:
-    print("  size = -100 → [{}] {}".format(e.__class__.__name__, e))
-
-print("\n✅ All tests completed successfully!")
+# Test integer_validator - ValueError cases
+>>> bg.integer_validator("width", -5)
+Traceback (most recent call last):
+...
+ValueError: width must be greater than 0
+>>> bg.integer_validator("height", 0)
+Traceback (most recent call last):
+...
+ValueError: height must be greater than 0
