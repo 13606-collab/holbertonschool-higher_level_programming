@@ -1,28 +1,28 @@
 #!/usr/bin/python3
 """
-This is empty class
+This module defines a Square class that inherits from Rectangle.
 """
 
 
-Rectangle = __import__('7-base_geometry').Rectangle
+Rectangle = __import__('9-rectangle').Rectangle
 
 
 class Square(Rectangle):
     """
-    This class defines Square of Rectangle
+    A class that represents a square by inheriting from Rectangle.
     """
 
     def __init__(self, size):
         """
-        a new Square instance.
-        """
+        Initializes a new Square instance.
+        """ 
         
         self.integer_validator("size", size)
         """
-        weight and height is equal
-        """
+        Call the parent class (Rectangle) constructor.
+        """        
         super().__init__(size, size)
         """
-        size equalize to self.size
-        """
+        Store the private attribute
+        """        
         self.__size = size
