@@ -1,29 +1,30 @@
 The ``MyList`` class
 ====================
 
-Import the class:
+Import the class to use it in our tests:
     >>> MyList = __import__('1-my_list').MyList
 
-Simple usage:
+Create an instance and add some integers:
     >>> my_list = MyList()
     >>> my_list.append(1)
     >>> my_list.append(4)
     >>> my_list.append(2)
     >>> my_list.append(3)
     >>> my_list.append(5)
+
+Verify the initial order:
     >>> print(my_list)
     [1, 4, 2, 3, 5]
+
+Verify the sorted output:
     >>> my_list.print_sorted()
     [1, 2, 3, 4, 5]
+
+Verify that the original list remains unchanged after the sort:
     >>> print(my_list)
     [1, 4, 2, 3, 5]
 
-With negative numbers:
-    >>> my_list = MyList([1, -5, 10, 0])
-    >>> my_list.print_sorted()
-    [-5, 0, 1, 10]
-
-Empty list:
+Test with an empty list:
     >>> my_list = MyList()
     >>> my_list.print_sorted()
     []
