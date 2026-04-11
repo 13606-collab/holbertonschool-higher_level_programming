@@ -22,7 +22,7 @@ class BaseGeometry:
         self.name = name
         self.value = value
 
-        if isinstance(obj, int):
+        if not type(obj) == int:
             raise TypeError("{} must be an integer".format(self.name))
 
         if value <= 0:
