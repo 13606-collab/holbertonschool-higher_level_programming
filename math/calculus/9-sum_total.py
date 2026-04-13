@@ -3,13 +3,11 @@
 sum calculation
 """
 
+
 def summation_i_squared(n):
     """
     function for sum calculation
     """    
     if not isinstance(n, int) or n < 0:
         return None
-
-    s = (n*(n+1)*(2*n+1))//6
-
-    return s
+    return (n*(n+1)*(2*n+1))//6
