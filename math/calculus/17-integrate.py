@@ -10,6 +10,8 @@ def poly_integral(poly, C=0):
     """
     if not isinstance(poly, list) or not isinstance(C, int):
         return None
+    if not poly:
+        return None
     new_poly = [C]
     for i in range(len(poly)):
         x = poly[i]/(i+1)
