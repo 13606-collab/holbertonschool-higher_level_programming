@@ -19,4 +19,6 @@ def poly_integral(poly, C=0):
             new_poly.append(int(x))
         else:
             new_poly.append(x)
+    if len(new_poly) > 0 and new_poly[-1] == 0:
+        new_poly.pop()
     return new_poly
