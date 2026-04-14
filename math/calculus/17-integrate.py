@@ -9,7 +9,7 @@ def poly_integral(poly, C=0):
     function for integral poly
     """
     if not isinstance(poly, list) or isinstance(C, int):
-        return
+        return None
     if not poly:
         return [C]
     new_poly = [C]
