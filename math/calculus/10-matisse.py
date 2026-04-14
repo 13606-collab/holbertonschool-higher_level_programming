@@ -8,11 +8,9 @@ def poly_derivative(poly):
     """
     function for poly
     """
-    if not isinstance(poly, list):
+    if len(poly) < 2:
         return None
     new_poly = []
     for i in range(1, len(poly)):
         new_poly.append(i*poly[i])
-    if new_poly == []:
-        return [0]
     return new_poly
