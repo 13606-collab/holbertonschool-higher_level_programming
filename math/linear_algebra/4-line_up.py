@@ -4,7 +4,9 @@
 
 def add_arrays(arr1, arr2):
     """Matrix add"""
-    add = [0] * max(len(arr1), len(arr2))
+    if not len(arr1) == len(arr2):
+        return None
+    add = [0] * len(arr1)
     for i in range(len(arr1)):
         add[i] = arr1[i] + arr2[i]
     return add
