@@ -13,7 +13,7 @@ def mat_mul(mat1, mat2):
     for i in range(row):
         for j in range(column):
             mult = 0
-            for l in range(centre):
-                mult += mat1[i][l] * mat2[l][j]
+            for _ in range(centre):
+                mult += mat1[i][_] * mat2[_][j]
             new_mat[i][j] = mult
     return new_mat
