@@ -2,6 +2,8 @@
 
 
 """_summary_"""
+
+
 def np_slice(matrix, axes={}):
     """_summary_
 
@@ -10,7 +12,7 @@ def np_slice(matrix, axes={}):
         axes (dict, optional): _description_. Defaults to {}.
 
     Returns:
-        _type_: _description_
+        _type_: tuple
     """
     dimensions = len(matrix.shape)
     slices_matrix = dimensions * [slice(None)]
