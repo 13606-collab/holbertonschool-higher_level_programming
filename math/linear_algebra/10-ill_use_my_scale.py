@@ -4,5 +4,5 @@
 
 def np_shape(matrix):
     """Def for My Scale"""
-    new_mat = np.shape(matrix)
+    new_mat = matrix.shape
     return new_mat
