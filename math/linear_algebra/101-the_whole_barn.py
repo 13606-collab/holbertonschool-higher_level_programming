@@ -4,8 +4,7 @@
 
 def add_matrices(mat1, mat2):
     """Function for The Whole Barn"""
-    # Initialize result matrix with zeros
-    
+    # Initialize result matrix with zeros    
     if isinstance(mat1, list):
         if not len(mat1) == len(mat2):
             return None
