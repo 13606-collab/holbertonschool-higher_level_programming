@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Moduole"
+"""Moduole"""
 
 
 def determinant(matrix):
