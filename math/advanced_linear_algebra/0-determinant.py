@@ -5,16 +5,6 @@
 def determinant(matrix):
     """
     Calculate the determinant of a square matrix.
-
-    Args:
-        matrix (list of lists): The matrix to compute determinant for.
-
-    Returns:
-        int or float: The determinant value.
-
-    Raises:
-        TypeError: If matrix is not a list of lists.
-        ValueError: If matrix is not square.
     """
 
     # Check type
