@@ -8,7 +8,10 @@ def determinant(matrix):
     """
 
     # Check type
-    if not isinstance(matrix, list) or not all(isinstance(row, list) for row in matrix):
+    if not type(matrix) is not list, list):
+        raise TypeError("matrix must be a list of lists")
+    height = len(matrix)
+    if height is 0:
         raise TypeError("matrix must be a list of lists")
 
     # Handle 0x0 case
