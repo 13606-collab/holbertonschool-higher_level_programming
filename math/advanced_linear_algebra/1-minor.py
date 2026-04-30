@@ -14,7 +14,7 @@ def validate_matrix(matrix):
     if not type(matrix) is list or not all(type(row) is list for row in matrix):
         raise TypeError("matrix must be a list of lists")
         if len(matrix) == 0 or any(len(row) != len(matrix) for row in matrix):
-        raise ValueError("matrix must be a non-empty square matrix")
+            raise ValueError("matrix must be a non-empty square matrix")
 
 
 def get_minor(matrix, row, col):
