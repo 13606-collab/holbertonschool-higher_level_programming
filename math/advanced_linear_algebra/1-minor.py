@@ -29,7 +29,7 @@ def determinant(matrix):
     n = len(matrix)
 
     if n == 1:
-        return [[1]]
+        return matrix[0][0]
 
     if n == 2:
         return matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0]
