@@ -55,31 +55,3 @@ def print_matrix(matrix, title="Matrix"):
     print(f"\n{title}:")
     for row in matrix:
         print([round(x, 4) for x in row])
-
-
-# ── Example usage ──────────────────────────────────────────────
-if __name__ == "__main__":
-
-    #  Test 0: normal case
-    M = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
-    print_matrix(M, "Original Matrix")
-    print("Minor at (0,0):", get_minor(M, 0, 0))
-    print_matrix(minor_matrix(M), "Minor Matrix")
-
-    # Test 1: matrix is not a list of lists
-    try:
-        get_minor("not a matrix", 0, 0)
-    except TypeError as e:
-        print(f"\nTypeError: {e}")
-
-    #  Test 2: matrix is empty
-    try:
-        get_minor([], 0, 0)
-    except ValueError as e:
-        print(f"ValueError: {e}")
-
-    #  Test 3: matrix is not a square matrix
-    try:
-        get_minor([[1, 2], [3, 4], [5, 6]], 0, 0)
-    except ValueError as e:
-        print(f"ValueError: {e}")
