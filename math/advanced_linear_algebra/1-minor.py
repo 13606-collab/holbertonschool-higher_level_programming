@@ -2,8 +2,9 @@
 
 
 """This script calculates the minor of a matrix,
-which is the determinant of the submatrix formed by removing a specific row and column.
-It also provides a function to compute the full matrix of minors for a given square matrix.
+which is the determinant of the submatrix formed
+by removing a specific row and column.
+It also provides a function to compute \the full matrix of minors for a given square matrix.
 The determinant is calculated recursively using cofactor expansion.
 """
 
