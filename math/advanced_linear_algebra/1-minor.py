@@ -4,13 +4,14 @@
 """This script calculates the minor of a matrix,
 which is the determinant of the submatrix formed
 by removing a specific row and column.
-It also provides a function to compute \the full matrix of minors for a given square matrix.
+It also provides a function to compute 
+the full matrix of minors for a given square matrix.
 The determinant is calculated recursively using cofactor expansion.
 """
 
 
 def validate_matrix(matrix):
-    if not type(matrix) is list or not all(isinstance(row, list) for row in matrix):
+    if not type(matrix) is list or not all(type(row) is list for row in matrix):
         raise TypeError("matrix must be a list of lists")
     
     if len(matrix) == 0 or any(len(row) != len(matrix) for row in matrix):
