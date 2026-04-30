@@ -42,7 +42,7 @@ def determinant(matrix):
     return det
 
 
-def minor_matrix(matrix):
+def minor(matrix):
     validate_matrix(matrix)
     n = len(matrix)
     return [
