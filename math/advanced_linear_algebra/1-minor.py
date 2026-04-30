@@ -27,7 +27,8 @@ def get_minor(matrix, row, col):
 
 def determinant(matrix):
     n = len(matrix)
-
+    if n == 0:
+        return 1  # The determinant of an empty matrix is defined as 1
     if n == 1:
         return matrix[0][0]
 
