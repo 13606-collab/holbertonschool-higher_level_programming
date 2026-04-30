@@ -13,9 +13,8 @@ The determinant is calculated recursively using cofactor expansion.
 def validate_matrix(matrix):
     if not type(matrix) is list or not all(type(row) is list for row in matrix):
         raise TypeError("matrix must be a list of lists")
-    
-    if len(matrix) == 0 or any(len(row) != len(matrix) for row in matrix):
-        raise ValueError("matrix must be a non-empty square matrix")
+        if len(matrix) == 0 or any(len(row) != len(matrix) for row in matrix):
+            raise ValueError("matrix must be a non-empty square matrix")
 
 
 def get_minor(matrix, row, col):
@@ -59,11 +58,11 @@ def print_matrix(matrix, title="Matrix"):
     for row in matrix:
         print([round(x, 4) for x in row])
 
+
 if __name__ == '__main__':
     minor = __import__('1-minor').minor
 
     mat1 = [[5]]
-    
     mat2 = [[1, 2], [3, 4]]
     mat3 = [[1, 1], [1, 1]]
     mat4 = [[5, 7, 9], [3, 1, 8], [6, 2, 4]]
