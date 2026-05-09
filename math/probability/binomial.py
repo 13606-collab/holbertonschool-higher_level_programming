@@ -57,7 +57,6 @@ class Binomial:
         if k < 0 or k > self.n:
             return 0
 
-        # Calculate n! / (k! * (n-k)!) — binomial coefficient C(n, k)
         def factorial(num):
             """Calculates factorial of a number"""
             result = 1
@@ -65,10 +64,23 @@ class Binomial:
                 result *= i
             return result
 
-        n_fact = factorial(self.n)
-        k_fact = factorial(k)
-        nk_fact = factorial(self.n - k)
-
-        coefficient = n_fact / (k_fact * nk_fact)
+        coefficient = factorial(self.n) / (factorial(k) * factorial(self.n - k))
 
         return coefficient * (self.p ** k) * ((1 - self.p) ** (self.n - k))
+
+    def cdf(self, k):
+        """Calculates the value of the CDF for a given number of successes
+
+        Args:
+            k (int): number of successes
+
+        Returns:
+            float: CDF value for k, or 0 if k is out of range
+        """
+        k = int(k)
+
+        if k < 0 or k > self.n:
+            return 0
+
+        # Hint: use pmf method — sum PMF from 0 to k
+        return sum(self.pmf(i) for i in range(k + 1))
