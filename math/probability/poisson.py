@@ -45,15 +45,33 @@ class Poisson:
         if k < 0:
             return 0
 
-        # Calculate e^(-λ)
         e_pow = self.e ** (-self.lambtha)
-
-        # Calculate λ^k
         lambda_pow = self.lambtha ** k
 
-        # Calculate k! (factorial)
         factorial = 1
         for i in range(1, k + 1):
             factorial *= i
 
         return (lambda_pow * e_pow) / factorial
+
+    def cdf(self, k):
+        """Calculates the value of the CDF for a given number of successes
+
+        Args:
+            k (int): number of successes
+
+        Returns:
+            float: CDF value for k, or 0 if k is out of range
+        """
+        k = int(k)
+
+        if k < 0:
+            return 0
+
+        # CDF = sum of PMF from 0 to k (inclusive)
+        cdf_value = 0
+        for i in range(k + 1):
+            cdf_value += self.pmf(i)
+
+        return cdf_value
+    
