@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Module for Binomial distribution"""
+"""Module for Binomial and Normal distributions"""
 
 
 class Binomial:
