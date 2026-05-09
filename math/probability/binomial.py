@@ -64,7 +64,9 @@ class Binomial:
                 result *= i
             return result
 
-        coefficient = factorial(self.n) / (factorial(k) * factorial(self.n-k))
+        n_fact = factorial(self.n)
+        k_fact = factorial(k) * factorial(self.n - k)
+        coefficient = n_fact / k_fact
 
         return coefficient * (self.p ** k) * ((1 - self.p) ** (self.n - k))
 
