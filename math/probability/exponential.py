@@ -25,9 +25,22 @@ class Exponential:
                 raise TypeError("data must be a list")
             if len(data) < 2:
                 raise ValueError("data must contain multiple values")
-            # For exponential distribution: λ = 1 / mean
             self.lambtha = float(len(data) / sum(data))
         else:
             if lambtha <= 0:
                 raise ValueError("lambtha must be a positive value")
             self.lambtha = float(lambtha)
+
+    def pdf(self, x):
+        """Calculates the value of the PDF for a given time period
+
+        Args:
+            x (float): time period
+
+        Returns:
+            float: PDF value for x, or 0 if x is out of range
+        """
+        if x < 0:
+            return 0
+
+        return self.lambtha * (self.e ** (-self.lambtha * x))
