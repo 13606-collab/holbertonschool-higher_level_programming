@@ -25,20 +25,11 @@ class Binomial:
             if len(data) < 2:
                 raise ValueError("data must contain multiple values")
 
-            # Step 1: Calculate mean and variance
             mean = sum(data) / len(data)
             variance = sum((x - mean) ** 2 for x in data) / len(data)
 
-            # Step 2: Calculate p first
-            # variance = n*p*(1-p), mean = n*p
-            # => p = 1 - variance/mean
             p = 1 - (variance / mean)
-
-            # Step 3: Calculate n (rounded, not cast!)
-            # mean = n*p => n = mean/p
             n = round(mean / p)
-
-            # Step 4: Recalculate p with rounded n
             p = mean / n
 
             self.n = n
@@ -51,3 +42,33 @@ class Binomial:
                 raise ValueError("p must be greater than 0 and less than 1")
             self.n = int(n)
             self.p = float(p)
+
+    def pmf(self, k):
+        """Calculates the value of the PMF for a given number of successes
+
+        Args:
+            k (int): number of successes
+
+        Returns:
+            float: PMF value for k, or 0 if k is out of range
+        """
+        k = int(k)
+
+        if k < 0 or k > self.n:
+            return 0
+
+        # Calculate n! / (k! * (n-k)!) — binomial coefficient C(n, k)
+        def factorial(num):
+            """Calculates factorial of a number"""
+            result = 1
+            for i in range(1, num + 1):
+                result *= i
+            return result
+
+        n_fact = factorial(self.n)
+        k_fact = factorial(k)
+        nk_fact = factorial(self.n - k)
+
+        coefficient = n_fact / (k_fact * nk_fact)
+
+        return coefficient * (self.p ** k) * ((1 - self.p) ** (self.n - k))
