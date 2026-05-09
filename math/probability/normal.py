@@ -14,7 +14,7 @@ class Normal:
         Args:
             data (list): list of data to estimate the distribution
             mean (float): mean of the distribution
-            stddev (float): standard deviation of the distribution
+            stddev (float): standard deviation of the distributionS
 
         Raises:
             TypeError: if data is not a list
@@ -27,10 +27,8 @@ class Normal:
             if len(data) < 2:
                 raise ValueError("data must contain multiple values")
 
-            # Calculate mean
             self.mean = float(sum(data) / len(data))
 
-            # Calculate standard deviation
             variance = sum((x - self.mean) ** 2 for x in data) / len(data)
             self.stddev = float(variance ** 0.5)
 
@@ -39,3 +37,25 @@ class Normal:
                 raise ValueError("stddev must be a positive value")
             self.mean = float(mean)
             self.stddev = float(stddev)
+
+    def z_score(self, x):
+        """Calculates the z-score of a given x-value
+
+        Args:
+            x (float): x-value
+
+        Returns:
+            float: z-score of x
+        """
+        return (x - self.mean) / self.stddev
+
+    def x_value(self, z):
+        """Calculates the x-value of a given z-score
+
+        Args:
+            z (float): z-score
+
+        Returns:
+            float: x-value of z
+        """
+        return self.mean + (z * self.stddev)
