@@ -72,3 +72,26 @@ class Normal:
         exponent = -((x - self.mean) ** 2) / (2 * self.stddev ** 2)
 
         return coefficient * (self.e ** exponent)
+
+    def cdf(self, x):
+        """Calculates the value of the CDF for a given x-value
+
+        Args:
+            x (float): x-value
+
+        Returns:
+            float: CDF value for x
+        """
+        # Normalize x to z for erf calculation
+        z = (x - self.mean) / (self.stddev * (2 ** 0.5))
+
+        # erf approximation from image 1 Taylor series
+        erf = (2 / (self.pi ** 0.5)) * (
+            z
+            - (z ** 3) / 3
+            + (z ** 5) / 10
+            - (z ** 7) / 42
+            + (z ** 9) / 216
+        )
+
+        return (1 + erf) / 2
