@@ -14,7 +14,7 @@ class Normal:
         Args:
             data (list): list of data to estimate the distribution
             mean (float): mean of the distribution
-            stddev (float): standard deviation of the distributionS
+            stddev (float): standard deviation of the distribution
 
         Raises:
             TypeError: if data is not a list
@@ -28,7 +28,6 @@ class Normal:
                 raise ValueError("data must contain multiple values")
 
             self.mean = float(sum(data) / len(data))
-
             variance = sum((x - self.mean) ** 2 for x in data) / len(data)
             self.stddev = float(variance ** 0.5)
 
@@ -59,3 +58,17 @@ class Normal:
             float: x-value of z
         """
         return self.mean + (z * self.stddev)
+
+    def pdf(self, x):
+        """Calculates the value of the PDF for a given x-value
+
+        Args:
+            x (float): x-value
+
+        Returns:
+            float: PDF value for x
+        """
+        coefficient = 1 / (self.stddev * (2 * self.pi) ** 0.5)
+        exponent = -((x - self.mean) ** 2) / (2 * self.stddev ** 2)
+
+        return coefficient * (self.e ** exponent)
