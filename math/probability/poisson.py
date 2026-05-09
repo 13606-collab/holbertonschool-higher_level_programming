@@ -12,7 +12,7 @@ class Poisson:
 
         Args:
             data (list): list of data to estimate the distribution
-            lambtha (float): 
+            lambtha (float):
             expected number of occurrences in a given time frame
 
         Raises:
@@ -57,4 +57,3 @@ class Poisson:
             factorial *= i
 
         return (lambda_pow * e_pow) / factorial
-    
