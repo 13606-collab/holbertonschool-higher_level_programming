@@ -1,11 +1,10 @@
 #!/usr/bin/env python3
 """Module for calculating intersection of data and prior probabilities."""
 import numpy as np
-likelihood = __import__('likelihood').likelihood
 
 
 def intersection(x, n, P, Pr):
-    """Calculate the intersection of obtaining data with prior probabilities.
+    """Calculate intersection of obtaining data with prior probabilities.
 
     Args:
         x (int): number of patients that develop severe side effects
@@ -44,4 +43,13 @@ def intersection(x, n, P, Pr):
     if not np.isclose(Pr.sum(), 1):
         raise ValueError("Pr must sum to 1")
 
-    return likelihood(x, n, P) * Pr
+    def factorial(k):
+        """Return factorial of k."""
+        result = 1
+        for i in range(2, k + 1):
+            result *= i
+        return result
+
+    coeff = factorial(n) / (factorial(x) * factorial(n - x))
+    lkl = coeff * (P ** x) * ((1 - P) ** (n - x))
+    return lkl * Pr
