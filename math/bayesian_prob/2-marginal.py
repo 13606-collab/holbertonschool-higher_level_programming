@@ -52,4 +52,4 @@ def marginal(x, n, P, Pr):
 
     coeff = factorial(n) / (factorial(x) * factorial(n - x))
     lkl = coeff * (P ** x) * ((1 - P) ** (n - x))
-    return float(np.sum(lkl * Pr))
+    return np.sum(lkl * Pr)
