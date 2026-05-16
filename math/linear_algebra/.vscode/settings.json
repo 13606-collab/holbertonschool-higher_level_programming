@@ -14,7 +14,8 @@
             "name": "Local instance MySQL82",
             "group": "mysql",
             "database": "mysql",
-            "username": "localhost"
+            "username": "root",
+            "password": "99912131fcbnb"
         }
     ]
 }
