@@ -1,19 +1,16 @@
 #!/usr/bin/env python3
-"""Module for renaming and converting DataFrame columns."""
+"""Module for loading data from a file as a pd.DataFrame."""
 import pandas as pd
 
 
-def rename(df):
-    """Rename Timestamp column to Datetime and convert to datetime values.
+def from_file(filename, delimiter):
+    """Load data from a file as a pd.DataFrame.
 
     Args:
-        df: a pd.DataFrame containing a column named Timestamp
+        filename: the file to load from
+        delimiter: the column separator
 
     Returns:
-        The modified pd.DataFrame with only Datetime and Close columns
+        The loaded pd.DataFrame
     """
-    df = df.rename(columns={"Timestamp": "Datetime"})
-    df["Datetime"] = pd.to_datetime(df["Datetime"])
-    df = df[["Datetime", "Close"]]
-    print(df)
-    return df
+    return pd.read_csv(filename, delimiter=delimiter)
