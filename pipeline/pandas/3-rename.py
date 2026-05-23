@@ -13,7 +13,7 @@ def rename(df):
         The modified pd.DataFrame with only Datetime and Close columns
     """
     df = df.rename(columns={"Timestamp": "Datetime"})
-    df["Datetime"] = pd.to_datetime(df["Datetime"])
+    df["Datetime"] = pd.to_datetime(df["Datetime"], unit="s")
     df = df[["Datetime", "Close"]]
     print(df)
     return df
