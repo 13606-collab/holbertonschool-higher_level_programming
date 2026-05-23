@@ -11,5 +11,5 @@ def slice(df):
     Returns:
         The sliced pd.DataFrame
     """
-    df = df[["High", "Low", "Close", "Volume_BTC"]]
+    df = df[["High", "Low", "Close", "Volume_(BTC)"]]
     return df.iloc[::60]
