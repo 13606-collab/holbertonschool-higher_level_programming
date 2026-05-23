@@ -1,0 +1,16 @@
+#!/usr/bin/env python3
+"""Module for slicing a pd.DataFrame."""
+import pandas as pd
+
+
+def slice(df):
+    """Extract specific columns and select every 60th row.
+
+    Args:
+        df: a pd.DataFrame
+
+    Returns:
+        The sliced pd.DataFrame
+    """
+    df = df[["High", "Low", "Close", "Volume_BTC"]]
+    return df.iloc[::60]
