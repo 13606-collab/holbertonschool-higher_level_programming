@@ -3,7 +3,8 @@
 
 
 def array(df):
-    """Select last 10 rows of High and Close columns and convert to numpy array.
+    """Select last 10 rows of High and Close
+    columns and convert to numpy array.
 
     Args:
         df: a pd.DataFrame containing columns named High and Close
