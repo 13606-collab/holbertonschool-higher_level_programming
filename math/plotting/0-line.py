@@ -1,15 +1,14 @@
 ﻿#!/usr/bin/env python3
-"""Create a simple line plot of y = x using Matplotlib."""
 
-import matplotlib.pyplot as plt
 import numpy as np
+import matplotlib.pyplot as plt
 
-x = np.linspace(0, 10)
-y = x**3
+x = np.arange(0, 11)
+y = x ** 3
 
-plt.plot(x, y, "r-")
+plt.plot(x, y, color='red', linestyle='-')
 plt.xlim(0, 10)
-plt.xlabel("x")
-plt.ylabel("y")
-plt.title("Line Plot")
+plt.title('Line Graph')
+plt.xlabel('x')
+plt.ylabel('y')
 plt.show()
