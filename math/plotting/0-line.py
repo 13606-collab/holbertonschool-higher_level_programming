@@ -8,8 +8,6 @@ def line():
     """Plot y as a solid red line with x-axis ranging from 0 to 10."""
     y = np.arange(0, 11) ** 3
     plt.figure(figsize=(6.4, 4.8))
-
-    # your code here
     plt.plot(np.arange(0, 11), y, 'r-')
     plt.xlim(0, 10)
     plt.show()
