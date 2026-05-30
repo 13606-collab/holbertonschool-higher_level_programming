@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env python3
+﻿#№!/usr/bin/env python3
 """Create a simple line plot of y = x using Matplotlib."""
 
 import matplotlib.pyplot as plt
