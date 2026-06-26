@@ -15,8 +15,8 @@ def create_confusion_matrix(labels, logits):
     logits (numpy.ndarray): One-hot encoded predicted labels of shape (m, classes)
 
     Returns:
-    numpy.ndarray: Confusion matrix of shape (classes, classes) where 
-                   rows = true labels, columns = predicted labels
+    numpy.ndarray: Confusion matrix of shape (classes, classes) 
+                   with float dtype (required for output format)
     """
     # Extract class indices from one-hot encodings
     true_classes = np.argmax(labels, axis=1)
@@ -25,10 +25,10 @@ def create_confusion_matrix(labels, logits):
     # Determine number of classes
     num_classes = labels.shape[1]
     
-    # Initialize confusion matrix
-    confusion = np.zeros((num_classes, num_classes), dtype=int)
+    # Initialize confusion matrix as FLOAT (important for output format)
+    confusion = np.zeros((num_classes, num_classes), dtype=float)
     
-    # Fill confusion matrix (vectorized)
+    # Fill confusion matrix
     np.add.at(confusion, (true_classes, pred_classes), 1)
     
     return confusion
