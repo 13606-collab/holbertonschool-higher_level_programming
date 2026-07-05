@@ -117,4 +117,3 @@ class Decision_Tree():
             from the root node.
         """
         return self.root.max_depth_below()
-    
