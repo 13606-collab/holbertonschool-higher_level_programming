@@ -79,6 +79,8 @@ class Node:
         lines = text.split("\n")
         new_text = "    +--" + lines[0] + "\n"
         for x in lines[1:]:
+            if x == "":
+                continue
             new_text += ("    |  " + x) + "\n"
         return (new_text)
 
@@ -95,6 +97,8 @@ class Node:
         lines = text.split("\n")
         new_text = "    +--" + lines[0] + "\n"
         for x in lines[1:]:
+            if x == "":
+                continue
             new_text += ("       " + x) + "\n"
         return (new_text)
 
@@ -114,6 +118,8 @@ class Node:
             s += self.left_child_add_prefix(self.left_child.__str__())
         if self.right_child:
             s += self.right_child_add_prefix(self.right_child.__str__())
+        if self.is_root:
+            s = s.rstrip("\n")
         return s
 
 
