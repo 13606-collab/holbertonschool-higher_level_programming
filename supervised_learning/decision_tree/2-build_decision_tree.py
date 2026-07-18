@@ -70,56 +70,53 @@ class Node:
         """Indent and prefix the string representation of a left child.
 
         Args:
-            text (str): The string representation of the left child.
+            text (str): The string representation of the left child
+                (may span multiple lines).
 
         Returns:
-            str: The text with a branch prefix on the first line and a
-            vertical bar prefix on the following lines.
+            str: The text with a branch prefix added to the first line
+            and a vertical-bar prefix added to every following line.
         """
         lines = text.split("\n")
         new_text = "    +--" + lines[0] + "\n"
         for x in lines[1:]:
-            if x == "":
-                continue
             new_text += ("    |  " + x) + "\n"
-        return (new_text)
+        return new_text
 
     def right_child_add_prefix(self, text):
         """Indent and prefix the string representation of a right child.
 
         Args:
-            text (str): The string representation of the right child.
+            text (str): The string representation of the right child
+                (may span multiple lines).
 
         Returns:
-            str: The text with a branch prefix on the first line and a
-            blank-space prefix on the following lines.
+            str: The text with a branch prefix added to the first line
+            and blank-space padding added to every following line.
         """
         lines = text.split("\n")
         new_text = "    +--" + lines[0] + "\n"
         for x in lines[1:]:
-            if x == "":
-                continue
             new_text += ("       " + x) + "\n"
-        return (new_text)
+        return new_text
 
     def __str__(self):
-        """Return the string representation of this node and its subtree.
+        """Return a human-readable, tree-shaped representation of the
+        node and all the nodes/leaves below it.
 
         Returns:
-            str: A human-readable, tree-shaped representation of this
-            node and all the nodes/leaves below it.
+            str: The string representation of this node's subtree.
         """
         if self.is_root:
-            s = f"root [feature={self.feature}, threshold={self.threshold}]\n"
+            s = (f"root [feature={self.feature}, "
+                 f"threshold={self.threshold}]\n")
         else:
             s = (f"-> node [feature={self.feature}, "
                  f"threshold={self.threshold}]\n")
         if self.left_child:
-            s += self.left_child_add_prefix(self.left_child.__str__())
+            s += self.left_child_add_prefix(str(self.left_child))
         if self.right_child:
-            s += self.right_child_add_prefix(self.right_child.__str__())
-        if self.is_root:
-            s = s.rstrip("\n")
+            s += self.right_child_add_prefix(str(self.right_child))
         return s
 
 
@@ -163,10 +160,11 @@ class Leaf(Node):
         return 1
 
     def __str__(self):
-        """Return the string representation of this leaf.
+        """Return a human-readable representation of this leaf.
 
         Returns:
-            str: A human-readable representation of the leaf's value.
+            str: The string representation of this leaf, showing its
+            predicted value.
         """
         return (f"-> leaf [value={self.value}]")
 
@@ -226,10 +224,11 @@ class Decision_Tree():
         return self.root.count_nodes_below(only_leaves=only_leaves)
 
     def __str__(self):
-        """Return the string representation of the whole tree.
+        """Return a human-readable, tree-shaped representation of the
+        whole decision tree.
 
         Returns:
-            str: A human-readable, tree-shaped representation of the
-            tree, starting from its root.
+            str: The string representation of the tree, starting from
+            its root.
         """
         return self.root.__str__()
