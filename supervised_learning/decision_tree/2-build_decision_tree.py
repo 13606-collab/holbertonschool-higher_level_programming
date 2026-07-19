@@ -77,7 +77,7 @@ class Node:
             str: The text with a branch prefix added to the first line
             and a vertical-bar prefix added to every following line.
         """
-        lines = text.split("\n")
+        lines = text.rstrip("\n").split("\n")
         new_text = "    +--" + lines[0] + "\n"
         for x in lines[1:]:
             new_text += ("    |  " + x) + "\n"
@@ -94,7 +94,7 @@ class Node:
             str: The text with a branch prefix added to the first line
             and blank-space padding added to every following line.
         """
-        lines = text.split("\n")
+        lines = text.rstrip("\n").split("\n")
         new_text = "    +--" + lines[0] + "\n"
         for x in lines[1:]:
             new_text += ("       " + x) + "\n"
