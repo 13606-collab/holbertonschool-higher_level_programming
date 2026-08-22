@@ -142,3 +142,54 @@ class Yolo:
             boxes.append(box)
 
         return boxes, box_confidences, box_class_probs
+
+    def filter_boxes(self, boxes, box_confidences, box_class_probs):
+        """Filters the boundary boxes using the box score threshold.
+
+        Args:
+            boxes: a list of numpy.ndarrays of shape (grid_height,
+                grid_width, anchor_boxes, 4) containing the processed
+                boundary boxes for each output, respectively.
+            box_confidences: a list of numpy.ndarrays of shape
+                (grid_height, grid_width, anchor_boxes, 1) containing
+                the processed box confidences for each output,
+                respectively.
+            box_class_probs: a list of numpy.ndarrays of shape
+                (grid_height, grid_width, anchor_boxes, classes)
+                containing the processed box class probabilities for
+                each output, respectively.
+
+        Returns:
+            A tuple of (filtered_boxes, box_classes, box_scores):
+                filtered_boxes: a numpy.ndarray of shape (?, 4)
+                    containing all of the filtered bounding boxes.
+                box_classes: a numpy.ndarray of shape (?,) containing
+                    the class number that each box in filtered_boxes
+                    predicts, respectively.
+                box_scores: a numpy.ndarray of shape (?) containing
+                    the box scores for each box in filtered_boxes,
+                    respectively.
+        """
+        box_scores_list = []
+        box_classes_list = []
+
+        for confidence, class_probs in zip(
+                box_confidences, box_class_probs):
+            box_scores = confidence * class_probs
+            box_classes_list.append(np.argmax(box_scores, axis=-1))
+            box_scores_list.append(np.max(box_scores, axis=-1))
+
+        boxes_all = np.concatenate(
+            [b.reshape(-1, 4) for b in boxes], axis=0)
+        box_classes_all = np.concatenate(
+            [c.reshape(-1) for c in box_classes_list])
+        box_scores_all = np.concatenate(
+            [s.reshape(-1) for s in box_scores_list])
+
+        filter_mask = box_scores_all >= self.class_t
+
+        filtered_boxes = boxes_all[filter_mask]
+        box_classes = box_classes_all[filter_mask]
+        box_scores = box_scores_all[filter_mask]
+
+        return filtered_boxes, box_classes, box_scores
